@@ -1,4 +1,4 @@
-# VS Code Foundry Toolkit で作る Hosted Agent ハンズオン
+# VS Code - Foundry Toolkit ハンズオン
 
 最終更新: 2026-09-03
 
