@@ -26,8 +26,8 @@
 
 | 項目 | 値 |
 |---|---|
-| GitHub リポジトリ | `your-name-shipping-agent` |
-| Foundry プロジェクト | `your-name-project` |
+| GitHub リポジトリ | `<your-name>-shipping-agent` |
+| Foundry プロジェクト | `<your-name>-project` |
 | モデル / デプロイ名 | `gpt-5.6-luna` |
 | MCP 接続 | `shipment-mcp` |
 | Toolbox | `delivery-management-toolbox` |
@@ -35,7 +35,7 @@
 | ローカル テスト用荷物番号 | `QS-00000001` |
 | クラウド テスト用荷物番号 | `QS-00000002` |
 
-`your-name` は、ほかの参加者と重複しない英数字の名前に置き換えてください。
+`<your-name>` は、ほかの参加者と重複しない英数字の名前に置き換えてください。
 
 ## 2. 前提条件
 
@@ -53,7 +53,7 @@
 > モデルの呼び出しにはモデルの利用量に応じた料金が、Hosted Agent にはアクティブなセッションが使用する CPU とメモリに応じた料金が発生する場合があります。料金は契約とリージョンにより異なるため、開始前に講師の案内と公式料金ページを確認してください。ハンズオン終了後は「13. 後片付け」に従い、不要なリソースを削除してください。
 
 > [!IMPORTANT]
-> MCP の Function Key は秘密情報です。GitHub Copilot のチャット、ソース コード、`.env`、README、Git のコミットには記載しないでください。この手順では Foundry の接続資格情報として登録します。Copilot の生成後も、変更一覧と `git diff` でキーがファイルに書き込まれていないことを確認してください。
+> MCP の Function Key は秘密情報です。GitHub Copilot のチャット、ソース コード、`.env`、README、Git のコミットには記載しないでください。この手順では Foundry の接続資格情報として登録します。
 
 ## 3. GitHub リポジトリと Codespaces の準備
 
@@ -64,9 +64,9 @@
 
 ![GitHub の Repositories 画面で New を選択](images/001_Create_repository_01.png)
 
-3. `Repository name` に `your-name-shipping-agent` と入力します。
+3. `Repository name` に `<your-name>-shipping-agent` と入力します。
 4. 公開範囲などは講師の指示に従います。画像の例では Public リポジトリを使用しています。
-5. `Create repository` を選択します。
+5. ページの下にある `Create repository` を選択します。
 
 ![新しいリポジトリ名を入力](images/001_Create_repository_02.png)
 
@@ -133,7 +133,7 @@ VS Code に「このフォルダー内のファイルの作成者を信頼しま
 
 ![Foundry プロジェクトを配置するリソース グループを選択](images/006_Create_Foundry_Project_02.png)
 
-6. プロジェクト名に `your-name-project` と入力し、`Enter` を押します。
+6. プロジェクト名に `<your-name>-project` と入力し、`Enter` を押します。
 
 ![一意の Foundry プロジェクト名を入力](images/006_Create_Foundry_Project_03.png)
 
@@ -219,7 +219,7 @@ https://<function-app-name>.azurewebsites.net/runtime/webhooks/mcp
 
 ## 7. GitHub Copilot で Hosted Agent を作成する
 
-### 7.1 Copilot のエージェント作成画面を開く
+### 7.1 Foundry Toolkit のエージェント作成画面を開く
 
 1. Foundry Toolkit の `Developer Tools`、`Build` を展開します。
 2. `Create Agent` を選択します。
@@ -233,9 +233,19 @@ https://<function-app-name>.azurewebsites.net/runtime/webhooks/mcp
 
 ### 7.2 作成プロンプトを送信する
 
-1. チャットが Agent モードになっていることを確認します。
-2. エージェント選択欄が表示される場合は `AIAgentExpert` を選択します。
-3. 次のプロンプトを貼り付けて送信します。
+1. チャットの設定が、以下になっていることを確認します。
+
+| モード | モデル | 推論の深さ |
+|---|---|---|
+| `AIAgentExpert` | `GPT-5.6 Sol` | `Medium 272K` |
+
+| 承認レベル | 
+|---|
+| `承認のバイパス (Allow all)` |
+
+![配送管理エージェントを作成するプロンプトを入力](images/010_Create_Agent_with_Copilot_03.png)
+
+2. 次のプロンプトを貼り付けて送信します。
 
 ```text
 以下の条件に従い、荷物情報の問い合わせを調査する AI エージェントを delivery-management-agent として作成してください。
@@ -246,10 +256,8 @@ https://<function-app-name>.azurewebsites.net/runtime/webhooks/mcp
 - 荷物番号は QS-00000001 といったフォーマットとなります。
 ```
 
-![配送管理エージェントを作成するプロンプトを入力](images/010_Create_Agent_with_Copilot_03.png)
-
 > [!CAUTION]
-> 画像では `承認のバイパス` が有効になっています。有効にすると、Copilot がファイル変更、パッケージ導入、`az` や `azd` などのターミナル コマンドを個別承認なしで実行する場合があります。このハンズオン専用の Codespace でのみ使用し、実行中の表示と完了後の変更一覧を確認してください。組織のポリシーで禁止されている場合や共有環境では、有効にせず操作ごとに内容を確認して承認してください。
+> 画像では `承認のバイパス` が有効になっています。有効にすると、Copilot がファイル変更、パッケージ導入、`az` や `azd` などのターミナル コマンドを個別承認なしで実行します。実行中の表示と完了後の変更一覧を確認してください。組織のポリシーで禁止されている場合や共有環境では、有効にせず操作ごとに内容を確認して承認される事を推奨します。
 
 ### 7.3 Copilot が要求するセットアップを完了する
 
@@ -259,7 +267,7 @@ Copilot は環境を確認しながら作業します。すでに導入・認証
 
 ![GitHub Copilot for Azure のスキルをインストール](images/010_Create_Agent_with_Copilot_04.png)
 
-2. `Foundry MCP` の認証ダイアログが表示されたら、接続先が Microsoft の Foundry MCP であることを確認して `許可` を選択します。
+2. `今すぐ Foundry MCP を開始する` をクリックし、認証ダイアログが表示されたら、`許可` を選択します。
 
 ![Foundry MCP の認証を許可](images/010_Create_Agent_with_Copilot_05.png)
 
@@ -310,13 +318,14 @@ azd auth login
 5. `.env` などのローカル設定ファイルが生成された場合は、秘密値がないことと `.gitignore` の対象になっていることを確認します。
 6. Copilot の変更内容を確認し、問題がなければ `保持` を選択します。
 
-![Copilot によるエージェント作成の完了と F5 の案内](images/011_Local_Debug_Agent_01.png)
-
 ## 8. Agent Inspector でローカル デバッグする
 
 ### 8.1 Agent Inspector を起動する
 
-1. `F5` を押します。ブラウザーが F5 を別の機能に割り当てている場合は、アクティビティ バーの `実行とデバッグ` を開き、`Debug Local Agent/Workflow HTTP Server` を選択して再生ボタンを押します。
+1. アクティビティ バーの `実行とデバッグ` を開き、`Debug Local Agent/Workflow HTTP Server` を選択して再生ボタンを押します。
+
+![Copilot によるエージェント作成の完了と F5 の案内](images/011_Local_Debug_Agent_01.png)
+
 2. Agent Inspector が開き、次を確認します。
 
 - 接続状態が `Connected`
@@ -331,14 +340,14 @@ Agent Inspector の入力欄へ次のメッセージを送信します。
 QS-00000001 の配送状況を教えてください。
 ```
 
+![Agent Inspector で MCP ツールを使った配送状況照会に成功](images/011_Local_Debug_Agent_02.png)
+
 次を確認します。
 
 - `shipment-mcp__track_shipment` の呼び出しに成功している
 - 荷物番号が `QS-00000001` になっている
 - 配送状況と最終更新日時が返る
 - `Run Timeline` が `Completed` になる
-
-![Agent Inspector で MCP ツールを使った配送状況照会に成功](images/011_Local_Debug_Agent_02.png)
 
 ## 9. Hosted Agent を Microsoft Foundry にデプロイする
 
