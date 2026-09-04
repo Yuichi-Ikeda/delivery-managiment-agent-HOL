@@ -48,9 +48,8 @@
 - 講師から配送情報 MCP サーバーのエンドポイントと Function Key が提供されていること
 - ブラウザーで GitHub、Azure、Microsoft Foundry のサインイン画面を開けること
 
-> [!IMPORTANT]
-> - MCP の Function Key は秘密情報です。GitHub Copilot のチャット、ソース コード、`.env`、README、Git のコミットには記載しないでください。この手順では Foundry の接続資格情報として登録します。
-> - モデルの呼び出しにはモデルの利用量に応じた料金が、Hosted Agent にはアクティブなセッションが使用する CPU とメモリに応じた料金が発生します。
+> [!CAUTION]
+> モデルの呼び出しにはモデルの利用量に応じた料金が、Hosted Agent にはアクティブなセッションが使用する CPU とメモリに応じた料金が発生します。
 
 ## 3. GitHub リポジトリと Codespaces の準備
 
@@ -190,6 +189,9 @@ VS Code に「このフォルダー内のファイルの作成者を信頼しま
 ```text
 https://<function-app-name>.azurewebsites.net/runtime/webhooks/mcp
 ```
+
+> [!IMPORTANT]
+> MCP の Function Key は秘密情報です。GitHub Copilot のチャット、ソース コード、`.env`、README、Git のコミットには記載しないでください。この手順では Foundry の接続資格情報として登録します。
 
 8. 入力内容を確認し、`Connect` を選択します。
 
