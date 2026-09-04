@@ -4,6 +4,8 @@
 
 このハンズオンでは、GitHub Codespaces 上の Visual Studio Code と Foundry Toolkit for VS Code を使い、荷物の配送状況を照会する Microsoft Foundry Hosted Agent を作成します。GitHub Copilot に Microsoft Agent Framework ベースのコードを生成させ、Foundry に登録した MCP ツールを呼び出して、ローカルとクラウドの両方で動作を確認します。
 
+![このハンズオンで作成する配送管理 AI エージェントのアーキテクチャ](images/000_Architecture_Diagram.png)
+
 > [!NOTE]
 > Microsoft Foundry、Foundry Toolkit、GitHub Copilot の画面や選択肢は更新されることがあります。表記が画像と少し異なる場合は、同じ意味の最新の項目を選択してください。
 
