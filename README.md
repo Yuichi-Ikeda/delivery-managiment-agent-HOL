@@ -49,7 +49,7 @@
 - ブラウザーで GitHub、Azure、Microsoft Foundry のサインイン画面を開けること
 
 > [!CAUTION]
-> モデルの呼び出しにはモデルの利用量に応じた料金が、Hosted Agent にはアクティブなセッションが使用する CPU とメモリに応じた料金が発生する場合があります。
+> モデルの呼び出しにはモデルの利用量に応じた料金が、Hosted Agent にはアクティブなセッションが使用する CPU とメモリに応じた料金が発生します。
 
 > [!IMPORTANT]
 > MCP の Function Key は秘密情報です。GitHub Copilot のチャット、ソース コード、`.env`、README、Git のコミットには記載しないでください。この手順では Foundry の接続資格情報として登録します。
