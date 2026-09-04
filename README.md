@@ -32,8 +32,7 @@
 | MCP 接続 | `shipment-mcp` |
 | Toolbox | `delivery-management-toolbox` |
 | Hosted Agent | `delivery-management-agent` |
-| ローカル テスト用荷物番号 | `QS-00000001` |
-| クラウド テスト用荷物番号 | `QS-00000002` |
+| テスト用荷物番号 | `QS-00000001` ～ `QS-00000003` |
 
 `<your-name>` は、ほかの参加者と重複しない英数字の名前に置き換えてください。
 
